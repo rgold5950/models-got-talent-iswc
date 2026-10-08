@@ -1,0 +1,11 @@
+# Everything needed to reproduce the paper's numbers and Figure 1 from the
+# committed paper_artifacts/. No torch, no Ray, no datasets, no GPU.
+#
+#   pip install -r requirements-reproduce.txt
+#   python -m reproduce.run
+#   pytest -m "not slow"
+
+numpy==2.4.4
+pandas==3.0.2
+matplotlib==3.10.8
+pytest==9.1.1

@@ -1,0 +1,194 @@
+# Unified Experiment Configuration
+# All datasets and their configurations in one place
+
+# Global defaults
+seed: 42
+device: "cuda"
+
+# Default paths (relative to project root, or absolute; {base_path} supported)
+default_save_dir: "results/"
+default_data_dir: "data/all_data/"
+# Ray session root (spill, sockets). Point this at fast local scratch with room
+# for spilled objects; override with RAY_TMPDIR or a per-dataset temp_dir.
+temp_dir: "ray_tmp/"
+
+# Default experiment settings
+#
+# --- Paper rwhar: arch_seed bands (order in *this* list sets contiguous seed ranges) ---
+# Global arch_seed is the arch RNG seed. List order here defines bands only (not Tune run order):
+#   arch_seed 1..300     -> RNN (300 trials)
+#   arch_seed 301..1500  -> CNN (1200 trials)
+#   arch_seed 1501..2000 -> TRANSFORMER (500 trials)
+# num_models = 300 + 1200 + 500 = 2000.
+# Tune runs trials as TRANSFORMER → RNN → CNN (ascending arch_seed within each block).
+# arch_guardrails: limits used for advisory checks only (model-space profiling / diagnose_and_confirm).
+#   enabled: false turns those diagnostic warnings off. Training never skips a trial for guardrails.
+default_experiments:
+  num_models: 2000
+  model_types:
+    - "RNN"
+    - "CNN"
+    - "TRANSFORMER"
+  model_type_counts:
+    "RNN": 300
+    "CNN": 1200
+    "TRANSFORMER": 500
+  # CNN/RNN use Sept 2025 / 654dd11-style sampling; global arch_seed is the arch RNG seed.
+  arch_guardrails:
+    enabled: true
+    default:
+      max_params: 20000000
+      max_estimated_memory_gb: 16.0
+    per_model_type:
+      CNN:
+        max_params: 25000000
+        max_estimated_memory_gb: 16.0
+        cnn_preflight:
+          enabled: true
+          max_channels: 768
+          max_sum_channels: 3000
+          max_layers: 5
+          hard_channel_cutoff: 900
+          max_channel_kernel_product_sum: 12000
+      RNN:
+        max_params: 10000000
+        max_estimated_memory_gb: 10.0
+      TRANSFORMER:
+        max_params: 12000000
+        max_estimated_memory_gb: 12.0
+  hyperparameters:
+    batch_size: 256
+    learning_rate: 0.0001
+    num_epochs: 50
+    step_size: 10
+    gamma: 0.8
+    weight_decay: 0.0001
+
+# Dataset-specific configurations
+datasets:
+  hhar:
+    variant: "original"  # original or imbalance
+    data_dir: "data/all_data/hhar/"
+    dataset: "hhar"
+    gpu_per_trial: 0.5
+
+  mobiactv2:
+    variant: "original"
+    data_dir: "data/all_data/mobiactv2/Jul-27-2025/"
+    dataset: "mobiactv2"
+    gpu_per_trial: 0.5
+
+  motionsense:
+    variant: "original"
+    data_dir: "data/all_data/motionsense/"
+    dataset: "motionsense"
+    gpu_per_trial: 0.5
+
+  motionsense_rho_0.1:
+    variant: "imbalance"
+    data_dir: "data/all_data/motionsense/"
+    rho: 0.1
+    dataset: "motionsense"
+    gpu_per_trial: 0.5
+    experiments:
+      num_models: 500
+      model_type_counts:
+        "TRANSFORMER": 125
+        "CNN": 300
+        "RNN": 75
+
+  motionsense_rho_0.01:
+    variant: "imbalance"
+    data_dir: "data/all_data/motionsense/"
+    rho: 0.01
+    dataset: "motionsense"
+    gpu_per_trial: 0.5
+    experiments:
+      num_models: 500
+      model_type_counts:
+        "TRANSFORMER": 125
+        "CNN": 300
+        "RNN": 75
+
+  motionsense_rho_0.001:
+    variant: "imbalance"
+    data_dir: "data/all_data/motionsense/"
+    rho: 0.001
+    dataset: "motionsense"
+    gpu_per_trial: 0.5
+    experiments:
+      num_models: 500
+      model_type_counts:
+        "TRANSFORMER": 125
+        "CNN": 300
+        "RNN": 75
+
+  rwhar:
+    variant: "original"
+    data_dir: "data/all_data/rwhar/Jul-03-2025/"
+    dataset: "rwhar"
+    gpu_per_trial: 0.5
+
+  rwhar_rho_0.1:
+    variant: "imbalance"
+    data_dir: "data/all_data/rwhar/Jul-03-2025/"
+    rho: 0.1
+    dataset: "rwhar"
+    gpu_per_trial: 0.5
+    experiments:
+      num_models: 500
+      model_type_counts:
+        "TRANSFORMER": 125
+        "CNN": 300
+        "RNN": 75
+
+  rwhar_rho_0.01:
+    variant: "imbalance"
+    data_dir: "data/all_data/rwhar/Jul-03-2025/"
+    rho: 0.01
+    dataset: "rwhar"
+    gpu_per_trial: 0.5
+    experiments:
+      num_models: 500
+      model_type_counts:
+        "TRANSFORMER": 125
+        "CNN": 300
+        "RNN": 75
+
+  rwhar_rho_0.001:
+    variant: "imbalance"
+    data_dir: "data/all_data/rwhar/Jul-03-2025/"
+    rho: 0.001
+    dataset: "rwhar"
+    gpu_per_trial: 0.5
+    experiments:
+      num_models: 500
+      model_type_counts:
+        "TRANSFORMER": 125
+        "CNN": 300
+        "RNN": 75
+
+  pamap2:
+    variant: "original"
+    data_dir: "data/all_data/pamap2_full_proc_final/"
+    dataset: "pamap2"
+    gpu_per_trial: 0.5
+
+  myogym:
+    variant: "original"
+    data_dir: "data/all_data/myogym/Jul-27-2025/"
+    dataset: "myogym"
+    gpu_per_trial: 0.5
+
+  random:
+    variant: "original"
+    disabled: true  # Enable only after scalar hyperparameters and model_type_counts matching num_models
+    data_dir: "data/all_data/random/"
+    dataset: "random"
+    gpu_per_trial: 0.5
+    experiments:
+      hyperparameters:
+        batch_size: [128, 256, 512]
+        learning_rate: [0.0001, 0.0005, 0.001]
+        weight_decay: [0.0001, 0.0005, 0.001]
+

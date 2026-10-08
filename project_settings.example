@@ -1,0 +1,21 @@
+# Project Settings
+#
+# Copy this file to `project_settings` and set PROJECT_ROOT to your checkout.
+# `utils/path_utils.get_project_root()` reads it, and everything that resolves
+# paths (configs, the post-processing pipeline) follows from it.
+#
+# You can skip this file entirely: if PROJECT_ROOT is unset, the checkout is
+# auto-detected by walking up from the current directory looking for train.py.
+#
+#   cp project_settings.example project_settings
+#   # edit the line below, then:
+#   source project_settings
+
+export PROJECT_ROOT="/path/to/models_got_talent"
+
+# Optional. Only needed if your results do not live under $PROJECT_ROOT/results.
+# See analysis/model_testing/dataset_processing_config.py for the full list.
+#
+# export MGT_RESULTS_ROOT="$PROJECT_ROOT/results"
+# export MGT_PAPER_RESULTS_ROOT="$MGT_RESULTS_ROOT/paper_run"
+# export RAY_TMPDIR="/fast/local/scratch/ray_tmp"

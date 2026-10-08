@@ -1,0 +1,40 @@
+# Full pipeline: architecture sampling, training, zero-cost proxies, analysis.
+# Versions are the ones the reported runs and the test suite were verified with.
+#
+# To only reproduce the paper's numbers and Figure 1 you need far less; see
+# requirements-reproduce.txt.
+#
+#   pip install -r requirements.txt
+#
+# torch is listed without a CUDA suffix; install the build matching your driver
+# from https://pytorch.org first if you need a specific CUDA version.
+
+# Core numerics and IO
+numpy==2.4.4
+pandas==3.0.2
+pyarrow==25.0.1
+scipy==1.17.1
+scikit-learn==1.8.0
+joblib==1.5.3
+h5py==3.16.0
+PyYAML==6.0.3
+tqdm==4.65.0
+
+# Modelling and distributed trial execution
+torch==2.6.0
+ray[tune]==2.58.0
+
+# Plotting
+matplotlib==3.10.8
+seaborn==0.13.2
+
+# CLI and diagnostics output
+prettytable==3.18.0
+
+# Tests
+pytest==9.1.1
+
+# Zero-cost proxy implementations from Abdelfattah et al. (provides `foresight`).
+# Only needed to recompute proxy scores from checkpoints; not needed for the
+# committed paper artifacts.
+# zero-cost-nas

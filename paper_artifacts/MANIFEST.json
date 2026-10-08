@@ -1,0 +1,106 @@
+{
+  "description": "One row per sampled architecture: its raw zero-cost proxy scores at initialisation and its F1 after full-scale training. Source of every number in the ISWC'26 paper. Scores are as measured: the sign conventions and the rank-averaged ensemble are applied at load time by reproduce.metrics.add_ensemble.",
+  "generated_at": "2026-10-08T00:17:45.670458+00:00",
+  "columns": [
+    "model_id",
+    "model_type",
+    "initial_val_f1_macro",
+    "best_val_f1_macro",
+    "best_test_f1_macro",
+    "grad_norm",
+    "snip",
+    "grasp",
+    "fisher",
+    "jacob_cov",
+    "plain",
+    "synflow",
+    "synflow_bn",
+    "train_flops"
+  ],
+  "datasets": {
+    "myogym": {
+      "file": "myogym.csv",
+      "architectures": 1999,
+      "model_type_counts": {
+        "CNN": 1199,
+        "TRANSFORMER": 500,
+        "RNN": 300
+      },
+      "sha256": "80bdfdcf4c39141f2d2c83ffbbcb055f17b1ee9a3467c287db7ef95815ed6989",
+      "source_experiment": "2026-05-12_20-15-35__f3b50c",
+      "source_full_results_pkl": "results/paper_run/post-processed-results/myogym/full_results.pkl",
+      "source_zero_cost_pkl": "results/paper_run/post-processed-results/myogym/zero_cost_scores.pkl",
+      "source_model_flops_pkl": "results/paper_run/post-processed-results/myogym/model_flops_myogym.pkl"
+    },
+    "hhar": {
+      "file": "hhar.csv",
+      "architectures": 1993,
+      "model_type_counts": {
+        "CNN": 1193,
+        "TRANSFORMER": 500,
+        "RNN": 300
+      },
+      "sha256": "68fd39904f15753341d05d03343fe74716e843308b24fdb8cdf08098991c8f9e",
+      "source_experiment": "2026-05-12_21-04-50__3cbd25",
+      "source_full_results_pkl": "results/paper_run/post-processed-results/hhar/full_results.pkl",
+      "source_zero_cost_pkl": "results/paper_run/post-processed-results/hhar/zero_cost_scores.pkl",
+      "source_model_flops_pkl": "results/paper_run/post-processed-results/hhar/model_flops_hhar.pkl"
+    },
+    "mobiactv2": {
+      "file": "mobiactv2.csv",
+      "architectures": 1964,
+      "model_type_counts": {
+        "CNN": 1164,
+        "TRANSFORMER": 500,
+        "RNN": 300
+      },
+      "sha256": "8eb42daebdd9fd0b9c6a947fae4b4f2cf4a09ca48c5f0143c8e093a6dba800c0",
+      "source_experiment": "2026-05-12_21-04-37__9b8d3b",
+      "source_full_results_pkl": "results/paper_run/post-processed-results/mobiactv2/full_results.pkl",
+      "source_zero_cost_pkl": "results/paper_run/post-processed-results/mobiactv2/zero_cost_scores.pkl",
+      "source_model_flops_pkl": "results/paper_run/post-processed-results/mobiactv2/model_flops_mobiactv2.pkl"
+    },
+    "motionsense": {
+      "file": "motionsense.csv",
+      "architectures": 1990,
+      "model_type_counts": {
+        "CNN": 1190,
+        "TRANSFORMER": 500,
+        "RNN": 300
+      },
+      "sha256": "b8719280b3f9277c40639ff0a42298f546bd664546f6e82fe44844de76fe8256",
+      "source_experiment": "2026-05-12_20-29-49__ade8f6",
+      "source_full_results_pkl": "results/paper_run/post-processed-results/motionsense/full_results.pkl",
+      "source_zero_cost_pkl": "results/paper_run/post-processed-results/motionsense/zero_cost_scores.pkl",
+      "source_model_flops_pkl": "results/paper_run/post-processed-results/motionsense/model_flops_motionsense.pkl"
+    },
+    "pamap2": {
+      "file": "pamap2.csv",
+      "architectures": 1989,
+      "model_type_counts": {
+        "CNN": 1189,
+        "TRANSFORMER": 500,
+        "RNN": 300
+      },
+      "sha256": "c4734c7ea79fb4a1e8ac1189d7203780b806f6abfc54cbd7a22f4ffce5968935",
+      "source_experiment": "2026-05-12_20-29-49__303adf",
+      "source_full_results_pkl": "results/paper_run/post-processed-results/pamap2/full_results.pkl",
+      "source_zero_cost_pkl": "results/paper_run/post-processed-results/pamap2/zero_cost_scores.pkl",
+      "source_model_flops_pkl": "results/paper_run/post-processed-results/pamap2/model_flops_pamap2.pkl"
+    },
+    "rwhar": {
+      "file": "rwhar.csv",
+      "architectures": 1992,
+      "model_type_counts": {
+        "CNN": 1192,
+        "TRANSFORMER": 500,
+        "RNN": 300
+      },
+      "sha256": "87dc41f0c4bd2657cbda818117942b5af1302b29df4c1137c7a52677ac2c7ada",
+      "source_experiment": "2026-05-12_21-15-52__cbe7ee",
+      "source_full_results_pkl": "results/paper_run/post-processed-results/rwhar/full_results.pkl",
+      "source_zero_cost_pkl": "results/paper_run/post-processed-results/rwhar/zero_cost_scores.pkl",
+      "source_model_flops_pkl": "results/paper_run/post-processed-results/rwhar/model_flops_rwhar.pkl"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "_model_type_mapping": {
+    "ordered_types": [
+      "RNN",
+      "CNN",
+      "TRANSFORMER"
+    ],
+    "seed_ranges": [
+      [
+        1,
+        300
+      ],
+      [
+        301,
+        1500
+      ],
+      [
+        1501,
+        2000
+      ]
+    ]
+  },
+  "arch_seed": 19,
+  "batch_size": 256,
+  "dataset": "motionsense",
+  "device": "cuda",
+  "exp_note": null,
+  "exp_tag": null,
+  "experiment_id": "2026-05-12_20-29-49__ade8f6",
+  "gamma": 0.8,
+  "git_commit": "41b6cbfd42cdd30f69fbd654a8ce934e2d6b8eeb",
+  "init_name": "xavier_normal",
+  "init_seed": 0,
+  "learning_rate": 0.0001,
+  "num_epochs": 50,
+  "save_dir": "/coc/flash3/hharesamudram3/models_got_talent_refactored/models_got_talent/results/experiments/2026-05-12_20-29-49__ade8f6/motionsense",
+  "seed": 42,
+  "step_size": 10,
+  "weight_decay": 0.0001,
+  "arch_config": [
+    {
+      "input_size": 3,
+      "hidden_size": 24,
+      "dropout_rate": 0.5
+    },
+    {
+      "input_size": 24,
+      "hidden_size": 64,
+      "dropout_rate": 0.5
+    },
+    {
+      "input_size": 64,
+      "hidden_size": 104,
+      "dropout_rate": 0.4
+    },
+    {
+      "input_size": 104,
+      "hidden_size": 184,
+      "dropout_rate": 0.0
+    }
+  ]
+}

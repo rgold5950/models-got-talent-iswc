@@ -1,0 +1,63 @@
+{
+  "_model_type_mapping": {
+    "ordered_types": [
+      "RNN",
+      "CNN",
+      "TRANSFORMER"
+    ],
+    "seed_ranges": [
+      [
+        1,
+        300
+      ],
+      [
+        301,
+        1500
+      ],
+      [
+        1501,
+        2000
+      ]
+    ]
+  },
+  "arch_seed": 593,
+  "batch_size": 256,
+  "dataset": "rwhar",
+  "device": "cuda",
+  "exp_note": null,
+  "exp_tag": null,
+  "experiment_id": "2026-05-12_21-15-52__cbe7ee",
+  "gamma": 0.8,
+  "git_commit": "41b6cbfd42cdd30f69fbd654a8ce934e2d6b8eeb",
+  "init_name": "xavier_normal",
+  "init_seed": 0,
+  "learning_rate": 0.0001,
+  "num_epochs": 50,
+  "save_dir": "/coc/flash3/hharesamudram3/models_got_talent_refactored/models_got_talent/results/experiments/2026-05-12_21-15-52__cbe7ee/rwhar",
+  "seed": 42,
+  "step_size": 10,
+  "weight_decay": 0.0001,
+  "arch_config": [
+    {
+      "in_channels": 15,
+      "out_channels": 752,
+      "kernel_size": 7,
+      "stride": 1,
+      "dropout_rate": 0.4
+    },
+    {
+      "in_channels": 752,
+      "out_channels": 792,
+      "kernel_size": 8,
+      "stride": 1,
+      "dropout_rate": 0.2
+    },
+    {
+      "in_channels": 792,
+      "out_channels": 320,
+      "kernel_size": 8,
+      "stride": 1,
+      "dropout_rate": 0.1
+    }
+  ]
+}
