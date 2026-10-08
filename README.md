@@ -121,6 +121,43 @@ models_got_talent/
 └── mgt_cli.py                # Unified CLI (run / aggregate / post-process / pipeline)
 ```
 
+## Inventory
+
+The whole repository is 12,094 files and clones in about 10 MB. 76 of those files
+are code and documentation (13,859 lines of Python); the other 12,018 are the
+paper's run — 18 pickles of results, and one architecture config per trial.
+
+| Path | Files | Size | What it is |
+|---|---:|---:|---|
+| `reproduce/` | 8 | 46 KB | Recomputes the paper's numbers and Figure 1, and checks its 16 claims |
+| `paper_artifacts/` | 7 | 3.0 MB | One row per sampled architecture; the input `reproduce.run` reads |
+| `tests/` | 3 | 17 KB | 50 reproduction tests plus one end-to-end training test |
+| `results/paper_run/post-processed-results/` | 18 | 61.4 MB | Training results, the eight proxies at initialisation, and FLOPs |
+| `results/paper_run/results/experiments/` | 12,000 | 14.3 MB | `params.json` per trial: sampled architecture, seeds, initialiser |
+| `analysis/notebooks/` | 1 | 99 KB | The notebook the paper's analysis was developed in |
+| `analysis/talented_models_v3.py` | 1 | 43 KB | Analysis helpers the notebook imports |
+| `analysis/model_testing/` | 3 | 50 KB | Result-path config, FLOPs counting, proxy correlation helpers |
+| `analysis/post_processing_pipeline/` | 5 | 36 KB | Aggregation and zero-cost proxy scoring |
+| `data/` | 13 | 76 KB | Seven dataset classes, the loader, and four preparation scripts |
+| `models/` | 8 | 34 KB | CNN, RNN, Transformer and TinyHAR generators, and the registry |
+| `utils/` | 14 | 98 KB | Config resolution, path handling, experiment bookkeeping |
+| `configs/` | 2 | 14 KB | `unified_config.yml` (datasets, search space, trial counts) and the conda environment |
+| `docs/DATASETS.md` | 1 | 5 KB | Where to get the six datasets and how to prepare them |
+| root | 10 | 107 KB | `mgt_cli.py`, `train.py`, `trainable.py`, `tune_runner.py`, requirements, `pytest.ini`, `project_settings.example`, `.gitignore`, this file |
+
+Deliberately not included:
+
+- `full_training_metrics.pkl` — 695 MB of per-epoch training curves. No result in
+  the paper depends on them.
+- The noise-robustness results, and the notebook cell that read them. That is
+  follow-up work which is not in the paper.
+- The raw datasets. They are third-party releases with their own licences;
+  [`docs/DATASETS.md`](docs/DATASETS.md) has the download sources and the exact
+  preprocessing used.
+- Model checkpoints. Recomputing the proxies from scratch needs them, but every
+  number in the paper is derived from the scores already in
+  `results/paper_run/`.
+
 ## Architecture search space
 
 We sample candidate models from CNN, LSTM, and Transformer families commonly used in HAR. Parameter ranges and approximate search-space sizes are below.
