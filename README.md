@@ -11,14 +11,7 @@ We evaluate eight zero-cost proxies (ZCPs) across six benchmark HAR datasets and
 training only the top-ranked predicted architectures gets within 7% (top-1) and
 2% (top-10) of exhaustively training all 2,000.
 
-This is the camera-ready artifact: the reproduction of the paper, the analysis
-notebook behind it, the results of the run it reports, and the pipeline that
-produced them — and nothing else.
-
 ## Reproducing the paper
-
-Every number and the figure in the paper are regenerated from committed data in
-about 15 seconds. No datasets, no GPU, no Ray:
 
 ```bash
 pip install -r requirements-reproduce.txt
